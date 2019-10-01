@@ -26,7 +26,7 @@ class SparkleImage: LeapImage {
     sparkle.name = "sparkle"
     sparkle.color = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     sparkle.greenSpeed = -0.7
-    sparkle.minificationFilter = kCAFilterNearest
+    sparkle.minificationFilter = convertFromCALayerContentsFilter(CALayerContentsFilter.nearest)
     sparkle.alphaSpeed = -1.0
     sparkle.scale = 0.8
     sparkle.scaleRange = 0.5
@@ -38,8 +38,13 @@ class SparkleImage: LeapImage {
     sparkle.spin = -2.0
     sparkle.spinRange = 4.0
 
-    emitter.renderMode = kCAEmitterLayerAdditive
-    emitter.emitterShape = kCAEmitterLayerCuboid
+    emitter.renderMode = .additive
+    emitter.emitterShape = .cuboid
     emitter.emitterCells = [sparkle]
   }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromCALayerContentsFilter(_ input: CALayerContentsFilter) -> String {
+	return input.rawValue
 }
